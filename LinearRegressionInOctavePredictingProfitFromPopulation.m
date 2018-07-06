@@ -32,7 +32,11 @@ y = data(:, 2);
 m = length(y); % number of training examples
 
 % Plot Data
-% Note: You have to complete the code in plotData.m
+% For this dataset, you can use a scatter plot to visualize the
+% data, since it has only two properties to plot (profit and population). (Many
+% other problems that you will encounter in real life are multi-dimensional and
+% can't be plotted on a 2-d plot.)
+
 
 %% ======== Creating function to Plot Data =============
 
@@ -67,6 +71,10 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =================== Part 2: Cost and Gradient descent ===================
+% Implementation Note: We store each example as a row in the the X
+% matrix in Octave/MATLAB. To take into account the intercept term (theta0),
+% we add an additional first column to X and set it to all ones. This allows
+% us to treat theta0 as simply another `feature'.
 
 X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
 theta = zeros(2, 1); % initialize fitting parameters
@@ -234,3 +242,9 @@ contour(theta0_vals, theta1_vals, J_vals, logspace(-2, 3, 20))
 xlabel('\theta_0'); ylabel('\theta_1');
 hold on;
 plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+
+% The purpose of these graphs is to show you that how J(theta) varies with
+% changes in theta0 and theta1. The cost function J(theta) is bowl-shaped and has a global
+% mininum. (This is easier to see in the contour plot than in the 3D surface
+% plot). This minimum is the optimal point for theta0 and theta1, and each step of
+% gradient descent moves closer to this point.
